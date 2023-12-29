@@ -4,7 +4,7 @@
     "scripts": {
         "dev": "vite",
         "build": "vite build",
-       "lint": "eslint --fix --ext .js,.jsx ."
+        "lint": "eslint --fix --ext .js,.jsx ."
     },
     "devDependencies": {
         "@headlessui/react": "^1.4.2",
