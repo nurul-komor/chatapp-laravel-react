@@ -5,18 +5,8 @@ export default function Navbar() {
         <>
             <div className=" bg-white  w-full relative z-30">
                 <div className="flex sm:items-center justify-between py-3 px-4">
-                    <div className="relative flex items-center space-x-4">
-                        <div className="relative">
-                            <span className="absolute text-green-500 -right-2 -top-0">
-                                <svg width="20" height="20">
-                                    <circle
-                                        cx="8"
-                                        cy="8"
-                                        r="8"
-                                        fill="currentColor"
-                                    ></circle>
-                                </svg>
-                            </span>
+                    <div className="relative flex items-center space-x-4 cursor-pointer">
+                        <div className="relative ring-4 ring-blue-400 ring-offset-2 rounded-full">
                             <img
                                 src="https://images.unsplash.com/photo-1549078642-b2ba4bda0cdb?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=3&amp;w=144&amp;h=144"
                                 alt=""
@@ -37,7 +27,7 @@ export default function Navbar() {
                     <div className="flex items-center space-x-2">
                         <button
                             type="button"
-                            className="inline-flex items-center justify-center rounded-lg  h-10 w-10 transition duration-500 ease-in-out text-gray-500 hover:bg-gray-300 focus:outline-none"
+                            className="inline-flex items-center justify-center rounded-full  h-10 w-10 transition duration-500 ease-in-out text-gray-500 hover:bg-gray-300 focus:outline-none"
                         >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -56,7 +46,7 @@ export default function Navbar() {
                         </button>
                         <button
                             type="button"
-                            className="inline-flex items-center justify-center rounded-lg  h-10 w-10 transition duration-500 ease-in-out text-gray-500 hover:bg-gray-300 focus:outline-none"
+                            className="inline-flex items-center justify-center rounded-full  h-10 w-10 transition duration-500 ease-in-out text-gray-500 hover:bg-gray-300 focus:outline-none"
                         >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
