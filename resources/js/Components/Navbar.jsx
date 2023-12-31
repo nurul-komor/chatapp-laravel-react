@@ -1,11 +1,17 @@
-import React from "react";
+import { GlobalContext } from "@/providers/GlobalProvider";
+import React, { useContext } from "react";
+import { IoAlertCircleOutline } from "react-icons/io5";
 
 export default function Navbar() {
+    const { openRightSidebar, setOpenRightSidebar } = useContext(GlobalContext);
     return (
         <>
             <div className=" bg-white  w-full relative z-30">
                 <div className="flex sm:items-center justify-between py-3 px-4">
-                    <div className="relative flex items-center space-x-4 cursor-pointer">
+                    <div
+                        className="relative flex items-center space-x-4 cursor-pointer"
+                        onClick={() => setOpenRightSidebar(!openRightSidebar)}
+                    >
                         <div className="relative ring-4 ring-blue-400 ring-offset-2 rounded-full">
                             <img
                                 src="https://images.unsplash.com/photo-1549078642-b2ba4bda0cdb?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=3&amp;w=144&amp;h=144"
@@ -81,6 +87,19 @@ export default function Navbar() {
                                     d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
                                 ></path>
                             </svg>
+                        </button>
+                        <span className="select-none mx-3 text-gray-300">
+                            |
+                        </span>
+                        <button
+                            className="inline-flex items-center justify-center rounded-full  h-10 w-10 transition duration-500 ease-in-out text-gray-500 hover:bg-gray-300 focus:outline-none"
+                            onClick={() =>
+                                setOpenRightSidebar(!openRightSidebar)
+                            }
+                        >
+                            <IoAlertCircleOutline
+                                size={22}
+                            ></IoAlertCircleOutline>
                         </button>
                     </div>
                 </div>
