@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ApplicationLogo from "@/Components/ApplicationLogo";
 import Dropdown from "@/Components/Dropdown";
 import NavLink from "@/Components/NavLink";
@@ -12,14 +12,38 @@ import "react-tabs/style/react-tabs.css";
 import ChatPerson from "@/Components/ChatPerson";
 // icons
 import { IoAlertCircleOutline } from "react-icons/io5";
+// custom css
+import MainStyle from "./Main.module.css";
+// data
+import { chatByPersons } from "../chatByPerson.js";
+
 import { GlobalContext } from "@/providers/GlobalProvider";
 export default function Authenticated({ children }) {
-    const { openRightSidebar } = useContext(GlobalContext);
-    const [showingNavigationDropdown, setShowingNavigationDropdown] =
-        useState(false);
-
+    const {
+        openRightSidebar,
+        activeChatPerson,
+        setActiveChatPerson,
+        loggedInUser,
+    } = useContext(GlobalContext);
     const [tabIndex, setTabIndex] = useState(0);
-    // console.log(tabIndex);
+    const [chatPersons, setChatPersons] = useState([]);
+
+    useEffect(() => {
+        setChatPersons(chatByPersons);
+    }, [chatByPersons]);
+
+    const handleActiveChat = (chats) => {
+        let sender;
+        // getting sender from the particular  chat
+        chats?.map((chat) => {
+            sender =
+                chat?.sender_id != loggedInUser?.id ? chat?.sender_id : null;
+            if (sender) {
+                setActiveChatPerson(chat?.sender_id);
+                return;
+            }
+        });
+    };
     return (
         <div className="h-screen w-full">
             {/* <Tabs> */}
@@ -34,9 +58,10 @@ export default function Authenticated({ children }) {
                     </div>
                     <div className=" w-[80%] h-screen ">
                         <LeftSidebar>
-                            <TabList>
-                                {[...Array(24)].map((item, index) => (
+                            <TabList className="border-0">
+                                {chatPersons?.map((chats, index) => (
                                     <Tab
+                                        onClick={() => handleActiveChat(chats)}
                                         key={index}
                                         className={`w-full outline-none`}
                                     >
@@ -56,21 +81,20 @@ export default function Authenticated({ children }) {
                 >
                     <div className=" w-full ring-1 ring-red-300 transition-all">
                         <div
-                            className={`${
-                                openRightSidebar
-                                    ? "min-w-[468px] w-[70%]"
-                                    : "min-w-[600px] w-[100%]"
-                            } transition duration-150 float-left`}
+                            className={`${MainStyle.main} ${
+                                openRightSidebar ? "" : `${MainStyle.full}`
+                            }  float-left`}
                         >
                             <Navbar></Navbar>
-                            {[...Array(24)].map((item, index) => (
-                                <TabPanel key={index}>{children}</TabPanel>
+
+                            {chatPersons?.map((item, index) => (
+                                <TabPanel className="border-0" key={index}>
+                                    {children}
+                                </TabPanel>
                             ))}
                         </div>
                         <div
-                            className={`p-4 h-screen transition duration-150  ring-1 relative w-[30%] float-right min-w-[100px] ${
-                                openRightSidebar ? "-right-0" : "-right-[40rem]"
-                            }`}
+                            className={`p-4 h-screen transition duration-150  relative w-[30%] float-right min-w-[100px] bg-white`}
                         >
                             ok
                         </div>

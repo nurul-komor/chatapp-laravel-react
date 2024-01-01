@@ -1,0 +1,8 @@
+.main {
+    width: 70%;
+    transition: 0.2s;
+}
+.main.full {
+    width: 100%;
+    transition: 0.2s;
+}

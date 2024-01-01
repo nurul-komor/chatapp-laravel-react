@@ -26,9 +26,9 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    $loggedInUser = auth()->user();
+    $auth = auth()->user();
     return Inertia::render('Dashboard', [
-        'loggedInUser' => $loggedInUser
+        'auth' => $auth
     ]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
