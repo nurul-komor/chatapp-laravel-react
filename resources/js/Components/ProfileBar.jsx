@@ -61,19 +61,21 @@ function ProfileBar() {
                     <Link>See all</Link>
                 </div>
                 <div className="grid grid-cols-3 gap-3">
-                    {/* {[...Array(9)].map((item, index) => (
-                        <div
+                    {[...Array(9)].map((item, index) => (
+                        <a
+                            href="https://plus.unsplash.com/premium_photo-1680553492268-516537c44d91?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8aW1hZ2V8ZW58MHx8MHx8fDA%3D"
+                            target="_blank"
                             key={index}
-                            className="rounded-[8px] h-15 overflow-hidden"
+                            className="rounded-[8px] h-15 overflow-hidden "
+                            rel="noreferrer"
                         >
                             <img
                                 src="https://plus.unsplash.com/premium_photo-1680553492268-516537c44d91?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8aW1hZ2V8ZW58MHx8MHx8fDA%3D"
                                 className="h-15 object-contain "
                                 alt=""
                             />
-                        </div>
-                    ))} */}
-                    ImageGallery
+                        </a>
+                    ))}
                 </div>
             </div>
         </div>

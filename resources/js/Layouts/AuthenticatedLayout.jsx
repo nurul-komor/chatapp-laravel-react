@@ -7,7 +7,7 @@ import React, { useContext, useEffect, useState } from "react";
 // import { Link } from "@inertiajs/react";
 import LeftSidebar from "@/Components/LeftSidebar";
 import Navbar from "@/Components/Navbar";
-import ProfileBar from "@/Components/ProfileBar";
+
 // react tab
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
@@ -20,19 +20,25 @@ import MainStyle from "./Main.module.css";
 import { chatByPersons } from "../chatByPerson.js";
 // contexts
 import { GlobalContext } from "@/providers/GlobalProvider";
+import ProfileBar from "@/Components/ProfileBar";
+import useAllChats from "@/hooks/useAllChats";
 export default function Authenticated({ children }) {
+    const [recipientId, setRecipient] = useState(0);
     const {
         openRightSidebar,
         activeChatPerson,
         setActiveChatPerson,
         loggedInUser,
     } = useContext(GlobalContext);
+    const data = useAllChats(recipientId);
+    console.log(data);
     const [tabIndex, setTabIndex] = useState(0);
     const [chatPersons, setChatPersons] = useState([]);
 
     useEffect(() => {
         setChatPersons(chatByPersons);
-    }, [chatByPersons]);
+        setRecipient(loggedInUser?.id);
+    }, [chatByPersons, loggedInUser]);
 
     const handleActiveChat = (chats) => {
         let sender;
