@@ -1,22 +1,24 @@
 import React, { useContext, useEffect, useState } from "react";
-import ApplicationLogo from "@/Components/ApplicationLogo";
-import Dropdown from "@/Components/Dropdown";
-import NavLink from "@/Components/NavLink";
-import ResponsiveNavLink from "@/Components/ResponsiveNavLink";
-import { Link } from "@inertiajs/react";
+// Components
+// import ApplicationLogo from "@/Components/ApplicationLogo";
+// import Dropdown from "@/Components/Dropdown";
+// import NavLink from "@/Components/NavLink";
+// import ResponsiveNavLink from "@/Components/ResponsiveNavLink";
+// import { Link } from "@inertiajs/react";
 import LeftSidebar from "@/Components/LeftSidebar";
 import Navbar from "@/Components/Navbar";
+import ProfileBar from "@/Components/ProfileBar";
 // react tab
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import ChatPerson from "@/Components/ChatPerson";
 // icons
-import { IoAlertCircleOutline } from "react-icons/io5";
+// import { IoAlertCircleOutline } from "react-icons/io5";
 // custom css
 import MainStyle from "./Main.module.css";
 // data
 import { chatByPersons } from "../chatByPerson.js";
-
+// contexts
 import { GlobalContext } from "@/providers/GlobalProvider";
 export default function Authenticated({ children }) {
     const {
@@ -94,9 +96,9 @@ export default function Authenticated({ children }) {
                             ))}
                         </div>
                         <div
-                            className={`p-4 h-screen transition duration-150  relative w-[30%] float-right min-w-[100px] bg-white`}
+                            className={`p-4 h-screen transition duration-150  relative w-[30%] float-right min-w-[100px] bg-white scrollbar-none max-h-screen overflow-y-scroll`}
                         >
-                            ok
+                            <ProfileBar />
                         </div>
                     </div>
                 </div>
