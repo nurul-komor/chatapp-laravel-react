@@ -12,6 +12,7 @@ export default function Dashboard({ auth }) {
         openRightSidebar,
         activeChatPerson,
         setActiveChatPerson,
+        sender,
         loggedInUser,
         setLoggedInUser,
     } = useContext(GlobalContext);
@@ -25,7 +26,7 @@ export default function Dashboard({ auth }) {
                     id="messages"
                     className="flex flex-col flex-col-reverse space-y-4 p-3  h-[80vh] overflow-y-scroll px-4 custom-scrollbar"
                 >
-                    <p>Sender:{activeChatPerson}</p>
+                    <p>Sender:{sender?.name}</p>
                     {/* chat message left  */}
                     <ChatMessageLeft />
                     <br></br>

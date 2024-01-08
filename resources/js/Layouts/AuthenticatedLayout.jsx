@@ -23,49 +23,73 @@ import { GlobalContext } from "@/providers/GlobalProvider";
 import ProfileBar from "@/Components/ProfileBar";
 // import useAllChats from "@/hooks/useAllChats";
 export default function Authenticated({ children }) {
-    const [recipientId, setRecipient] = useState(0);
     const {
         openRightSidebar,
         activeChatPerson,
         setActiveChatPerson,
         loggedInUser,
+        sender,
+        setSender,
+        messages,
+        setMessages,
     } = useContext(GlobalContext);
-    // const data = useAllChats(recipientId);
-    // console.log(data);
+
     const [tabIndex, setTabIndex] = useState(0);
     const [chatPersons, setChatPersons] = useState([]);
+    useEffect(() => {
+        loadSenders();
+    }, [loggedInUser]);
     /* ------------------------------ load senders ------------------------------ */
     const loadSenders = () => {
         const response = fetch(
-            `${
-                import.meta.env.VITE_API_URI
-            }/senders/?recipientId=${recipientId}`
+            `${import.meta.env.VITE_API_URI}/senders/?recipientId=${
+                loggedInUser?.id
+            }`,
+            { headers: { "Content-Type": "application/json" } }
         )
             .then((res) => res.json())
             .then((senders) => {
-                console.log(Object.values(senders?.senders));
                 setChatPersons(Object.values(senders?.senders));
+                console.log(senders?.senders[0]);
+                if (!activeChatPerson) {
+                    console.log("no active chat person");
+                }
+            })
+            .catch((err) => new Error(err));
+    };
+    /* ------------------------------ load senders ------------------------------ */
+    /* ------------------------------ load messages ----------------------------- */
+    const loadMessages = () => {
+        const messages = fetch(
+            `${
+                import.meta.env.VITE_API_URI
+            }/messages/?senderId=${activeChatPerson}`,
+            { headers: { "Content-Type": "application/json" } }
+        )
+            .then((res) => res.json())
+            .then((data) => {
+                // console.log(data);
+                setSender(data?.sender);
+                setActiveChatPerson(data?.sender?.id);
+                setMessages(data?.messages);
             })
             .catch((err) => console.log(err));
     };
-    /* ------------------------------ load senders ------------------------------ */
-    useEffect(() => {
-        loadSenders();
-        setRecipient(loggedInUser?.id);
-    }, [loggedInUser, recipientId]);
+    /* ------------------------------ load messages ----------------------------- */
 
     const handleActiveChat = (chat) => {
-        // console.log(chats);
         let sender;
         // getting sender from the particular  chat
-        // chats?.map((chat) => {
+
         sender = chat?.sender_id != loggedInUser?.id ? chat?.sender_id : null;
         if (sender) {
             setActiveChatPerson(chat?.sender_id);
-            return;
         }
-        // });
     };
+    useEffect(() => {
+        loadMessages();
+    }, [activeChatPerson]);
+
     return (
         <div className="h-screen w-full">
             {/* <Tabs> */}
@@ -82,16 +106,16 @@ export default function Authenticated({ children }) {
                         <LeftSidebar>
                             <TabList className="border-0">
                                 {chatPersons &&
-                                    chatPersons?.map((sender, index) => (
+                                    chatPersons?.map((item, index) => (
                                         <Tab
                                             onClick={() =>
-                                                handleActiveChat(sender)
+                                                handleActiveChat(item)
                                             }
                                             key={index}
                                             className={`w-full outline-none`}
                                         >
                                             <ChatPerson
-                                                sender={sender}
+                                                sender={item}
                                                 active={
                                                     tabIndex == index
                                                         ? true

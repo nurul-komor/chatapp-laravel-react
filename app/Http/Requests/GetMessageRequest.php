@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Contracts\Validation\Validator as Validation;
 
 class GetMessageRequest extends FormRequest
 {
@@ -24,5 +26,13 @@ class GetMessageRequest extends FormRequest
         return [
             'senderId' => ['required', 'exists:users,id'],
         ];
+    }
+    public function failedValidation(Validation $validator)
+    {
+        throw new HttpResponseException(response()->json([
+            'status' => false,
+            'message' => 'Validation errors',
+            'errors' => $validator->errors()
+        ], 400));
     }
 }

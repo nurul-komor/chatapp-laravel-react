@@ -3,7 +3,6 @@ import { object } from "prop-types";
 const ChatPerson = ({ sender, active }) => {
     return (
         <>
-            {" "}
             {active ? (
                 <div className="pl-2 pr-1 py-2 flex gap-3 w-full  ring-red-400 border-l-[4px] border-blue-400  bg-blue-100">
                     <div className="h-10 w-10  bg-gray-500 rounded-full overflow-hidden">
