@@ -22,7 +22,7 @@ const ChatPerson = ({ sender, active }) => {
                                 {sender?.created_at}
                             </span>
                         </div>
-                        <div className="mt-[.5px] text-sm text-gray-500 truncate text-limit-1">
+                        <div className="mt-[.5px] text-sm text-gray-500 pr-2 text-limit-1">
                             {sender?.message}
                         </div>
                     </div>
@@ -45,7 +45,7 @@ const ChatPerson = ({ sender, active }) => {
                                 {sender?.created_at}
                             </span>
                         </div>
-                        <div className="mt-[.5px] text-sm text-gray-500 truncate text-limit-1">
+                        <div className="mt-[.5px] text-sm text-gray-400  text-limit-1  pr-2">
                             {sender?.message}
                         </div>
                     </div>

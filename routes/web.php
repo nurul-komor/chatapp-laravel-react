@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Controllers\GetSendersController;
-use App\Http\Controllers\ProfileController;
-use Illuminate\Foundation\Application;
-use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Application;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\GetSendersController;
+use App\Http\Controllers\GetMessagesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,6 +46,8 @@ Route::middleware('auth')->group(function () {
      */
     Route::prefix('/api')->group(function () {
         Route::get('/senders', [GetSendersController::class, 'index']);
+        // find messages of a sender
+        Route::get('/messages', [GetMessagesController::class, 'index']);
     });
 });
 

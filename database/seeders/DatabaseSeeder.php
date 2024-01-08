@@ -18,12 +18,12 @@ class DatabaseSeeder extends Seeder
         if (User::count() < 1) {
 
             User::create([
-                'name' => 'user',
+                'name' => fake()->name(),
                 'email' => 'user@gmail.com',
                 'password' => bcrypt('password'),
             ]);
             User::create([
-                'name' => 'user',
+                'name' => fake()->name(),
                 'email' => 'user1@gmail.com',
                 'password' => bcrypt('password'),
             ]);

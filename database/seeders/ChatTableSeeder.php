@@ -21,7 +21,7 @@ class ChatTableSeeder extends Seeder
             Chat::create([
                 'sender_id' => $sender,
                 'recipient_id' => $recipient,
-                'message' => "Hello This is " . $sender,
+                'message' => fake()->text() . $i,
             ]);
         }
     }
