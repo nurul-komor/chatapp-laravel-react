@@ -14,22 +14,27 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+
+        if (User::count() < 1) {
+
+            User::create([
+                'name' => 'user',
+                'email' => 'user@gmail.com',
+                'password' => bcrypt('password'),
+            ]);
+            User::create([
+                'name' => 'user',
+                'email' => 'user1@gmail.com',
+                'password' => bcrypt('password'),
+            ]);
+            \App\Models\User::factory()->create([
+                'name' => 'Test User',
+                'email' => 'test@example.com',
+            ]);
+        }
+
         \App\Models\User::factory(100)->create();
 
-        // User::create([
-        //     'name' => 'user',
-        //     'email' => 'user@gmail.com',
-        //     'password' => bcrypt('password'),
-        // ]);
-        // User::create([
-        //     'name' => 'user',
-        //     'email' => 'user1@gmail.com',
-        //     'password' => bcrypt('password'),
-        // ]);
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
         $this->call([
             ChatTableSeeder::class
         ]);

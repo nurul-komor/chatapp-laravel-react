@@ -2,7 +2,7 @@ import React from "react";
 
 const useAllChats = async (recipientId) => {
     const response = await fetch(
-        `${import.meta.env.VITE_API_URI}/chats/?recipientId=${recipientId}`,
+        `${import.meta.env.VITE_API_URI}/senders/?recipientId=${recipientId}`,
         {
             headers: {
                 Accept: "Application/json",
@@ -14,9 +14,9 @@ const useAllChats = async (recipientId) => {
     }
 
     const chatsData = await response.json();
-    const chats = chatsData;
+    const chats = chatsData?.senders;
 
-    // console.log(chats);
+    console.log(chats);
     return [chats];
 };
 

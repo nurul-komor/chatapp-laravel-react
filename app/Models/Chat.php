@@ -19,4 +19,9 @@ class Chat extends Model
     {
         return $this->hasOne(User::class, 'recipient_id', 'id');
     }
+
+    public function getCreatedAtAttribute($time)
+    {
+        return time_formatter($time);
+    }
 }

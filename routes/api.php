@@ -21,5 +21,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::group([], function () {
-    Route::get('/chats', [GetChatController::class, 'index']);
+
 });
