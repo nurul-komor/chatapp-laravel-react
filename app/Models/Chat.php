@@ -22,6 +22,6 @@ class Chat extends Model
 
     public function getCreatedAtAttribute($time)
     {
-        return time_formatter($time);
+        return time_formatter($time, 'short');
     }
 }

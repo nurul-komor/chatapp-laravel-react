@@ -6,7 +6,7 @@ date_default_timezone_set("Asia/Dhaka");
 
 // Get Difference of time between to parameters
 if (!function_exists('time_formatter')) {
-    function time_formatter($time)
+    function time_formatter($time, $type)
     {
         $now = new DateTime();
         $created_at = new DateTime($time);
@@ -22,9 +22,18 @@ if (!function_exists('time_formatter')) {
             case $different->d > 0:
                 return $different->d . " days ago";
             case $different->h > 0:
-                return $different->h . " hours " . $different->i . " minutes ago";
+                if ($type == 'short') {
+                    return $different->h . " hours ago";
+                } else {
+                    return $different->h . " hours " . $different->i . " minutes ago";
+                }
             case $different->i > 0:
-                return $different->i . " minutes " . $different->s . " seconds ago";
+                if ($type == 'short') {
+                    return $different->i . " minutes ago";
+                } else {
+                    return $different->i . " minutes " . $different->s . " seconds ago";
+                }
+
             case $different->s > 0:
                 return $different->s . " seconds ago";
             default:

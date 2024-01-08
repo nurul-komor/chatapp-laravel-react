@@ -17,11 +17,11 @@ import ChatPerson from "@/Components/ChatPerson";
 // custom css
 import MainStyle from "./Main.module.css";
 // data
-import { chatByPersons } from "../chatByPerson.js";
+// import { chatByPersons } from "../chatByPerson.js";
 // contexts
 import { GlobalContext } from "@/providers/GlobalProvider";
 import ProfileBar from "@/Components/ProfileBar";
-import useAllChats from "@/hooks/useAllChats";
+// import useAllChats from "@/hooks/useAllChats";
 export default function Authenticated({ children }) {
     const [recipientId, setRecipient] = useState(0);
     const {
@@ -30,27 +30,41 @@ export default function Authenticated({ children }) {
         setActiveChatPerson,
         loggedInUser,
     } = useContext(GlobalContext);
-    const data = useAllChats(recipientId);
-    console.log(data);
+    // const data = useAllChats(recipientId);
+    // console.log(data);
     const [tabIndex, setTabIndex] = useState(0);
     const [chatPersons, setChatPersons] = useState([]);
-
+    /* ------------------------------ load senders ------------------------------ */
+    const loadSenders = () => {
+        const response = fetch(
+            `${
+                import.meta.env.VITE_API_URI
+            }/senders/?recipientId=${recipientId}`
+        )
+            .then((res) => res.json())
+            .then((senders) => {
+                console.log(Object.values(senders?.senders));
+                setChatPersons(Object.values(senders?.senders));
+            })
+            .catch((err) => console.log(err));
+    };
+    /* ------------------------------ load senders ------------------------------ */
     useEffect(() => {
-        setChatPersons(chatByPersons);
+        loadSenders();
         setRecipient(loggedInUser?.id);
-    }, [chatByPersons, loggedInUser]);
+    }, [loggedInUser, recipientId]);
 
-    const handleActiveChat = (chats) => {
+    const handleActiveChat = (chat) => {
+        // console.log(chats);
         let sender;
         // getting sender from the particular  chat
-        chats?.map((chat) => {
-            sender =
-                chat?.sender_id != loggedInUser?.id ? chat?.sender_id : null;
-            if (sender) {
-                setActiveChatPerson(chat?.sender_id);
-                return;
-            }
-        });
+        // chats?.map((chat) => {
+        sender = chat?.sender_id != loggedInUser?.id ? chat?.sender_id : null;
+        if (sender) {
+            setActiveChatPerson(chat?.sender_id);
+            return;
+        }
+        // });
     };
     return (
         <div className="h-screen w-full">
@@ -67,19 +81,25 @@ export default function Authenticated({ children }) {
                     <div className=" w-[80%] h-screen ">
                         <LeftSidebar>
                             <TabList className="border-0">
-                                {chatPersons?.map((chats, index) => (
-                                    <Tab
-                                        onClick={() => handleActiveChat(chats)}
-                                        key={index}
-                                        className={`w-full outline-none`}
-                                    >
-                                        <ChatPerson
-                                            active={
-                                                tabIndex == index ? true : false
+                                {chatPersons &&
+                                    chatPersons?.map((sender, index) => (
+                                        <Tab
+                                            onClick={() =>
+                                                handleActiveChat(sender)
                                             }
-                                        />
-                                    </Tab>
-                                ))}
+                                            key={index}
+                                            className={`w-full outline-none`}
+                                        >
+                                            <ChatPerson
+                                                sender={sender}
+                                                active={
+                                                    tabIndex == index
+                                                        ? true
+                                                        : false
+                                                }
+                                            />
+                                        </Tab>
+                                    ))}
                             </TabList>
                         </LeftSidebar>
                     </div>

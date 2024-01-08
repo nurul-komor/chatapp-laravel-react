@@ -1,6 +1,6 @@
 import React from "react";
-
-const ChatPerson = ({ person, active }) => {
+import { object } from "prop-types";
+const ChatPerson = ({ sender, active }) => {
     return (
         <>
             {" "}
@@ -15,15 +15,15 @@ const ChatPerson = ({ person, active }) => {
                     </div>
                     <div className=" w-[85%]">
                         <div className="flex items-center justify-between">
-                            <span className="text-sm font-bold text-gray-900 truncate">
-                                Abul Kalam
+                            <span className="text-sm font-bold text-gray-900 truncate capitalize">
+                                {sender?.name}
                             </span>
                             <span className="text-sm font-medium text-gray-500 truncate">
-                                12:30 PM
+                                {sender?.created_at}
                             </span>
                         </div>
                         <div className="mt-[.5px] text-sm text-gray-500 truncate text-limit-1">
-                            Lorem ipsum dolor sit amet.
+                            {sender?.message}
                         </div>
                     </div>
                 </div>
@@ -38,15 +38,15 @@ const ChatPerson = ({ person, active }) => {
                     </div>
                     <div className=" w-[85%]">
                         <div className="flex items-center justify-between">
-                            <span className="text-sm font-bold text-gray-900 truncate">
-                                Abul Kalam
+                            <span className="text-sm font-bold text-gray-900 truncate capitalize">
+                                {sender?.name}
                             </span>
                             <span className="text-sm font-medium text-gray-500 truncate">
-                                12:30 PM
+                                {sender?.created_at}
                             </span>
                         </div>
                         <div className="mt-[.5px] text-sm text-gray-500 truncate text-limit-1">
-                            Lorem ipsum dolor sit amet.
+                            {sender?.message}
                         </div>
                     </div>
                 </div>
@@ -57,3 +57,8 @@ const ChatPerson = ({ person, active }) => {
 };
 
 export default ChatPerson;
+
+ChatPerson.propTypes = {
+    sender: object,
+    // active: boolean,
+};
