@@ -34,7 +34,7 @@ export default function Authenticated({ children }) {
         setMessages,
     } = useContext(GlobalContext);
 
-    const [tabIndex, setTabIndex] = useState(0);
+    const [tabIndex, setTabIndex] = useState(-1);
     const [chatPersons, setChatPersons] = useState([]);
     useEffect(() => {
         loadSenders();
@@ -129,24 +129,31 @@ export default function Authenticated({ children }) {
                     </div>
                 </div>
                 <div
-                    className={`col-span-6  bg-gray-100 h-screen overflow-hidden w-full`}
+                    className={`col-span-6  bg-gray-100 h-screen overflow-hidden w-full relative z-1`}
                 >
-                    <div className=" w-full ring-1 ring-red-300 transition-all">
+                    {/* background  */}
+
+                    <div
+                        className={`absolute left-0 top-0 w-full h-screen bg-[url('https://www.shutterstock.com/image-vector/social-media-sketch-vector-seamless-600nw-1660950727.jpg')] -z-1 opacity-[.1]`}
+                    ></div>
+                    <div className=" w-full transition-all relative z-1">
                         <div
-                            className={`${MainStyle.main} ${
+                            className={` ${MainStyle.main} ${
                                 openRightSidebar ? "" : `${MainStyle.full}`
                             }  float-left`}
                         >
-                            <Navbar></Navbar>
+                            {tabIndex >= 0 ? <Navbar /> : ""}
 
                             {chatPersons?.map((item, index) => (
                                 <TabPanel className="border-0" key={index}>
-                                    {children}
+                                    {tabIndex >= 0 ? children : ""}
                                 </TabPanel>
                             ))}
                         </div>
                         <div
-                            className={`p-4 h-screen transition duration-150  relative w-[30%] float-right min-w-[100px] bg-white scrollbar-none max-h-screen overflow-y-scroll`}
+                            className={`p-4 h-screen transition duration-150  relative w-[30%] float-right min-w-[100px] bg-white scrollbar-none max-h-screen overflow-y-scroll ${
+                                tabIndex >= 0 ? "" : "hidden"
+                            }`}
                         >
                             <ProfileBar />
                         </div>
