@@ -10,7 +10,13 @@ class FetchMessageBySender
 {
     public function fetchMessages($senderId): object
     {
-        $messages = Chat::where('recipient_id', auth()->user()->id)->where('sender_id', $senderId)->latest()->paginate(100);
+
+        // Getting messages where recipient id == $senderId or recipient_id = logged user id
+
+        $messages = Chat::whereIn('recipient_id', [auth()->user()->id, $senderId])->whereIn('sender_id', [auth()->user()->id, $senderId])
+            ->latest()
+            ->paginate(200);
+
         return $messages;
     }
 

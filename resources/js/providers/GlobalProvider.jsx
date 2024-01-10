@@ -8,6 +8,7 @@ export const GlobalProvider = ({ children }) => {
     const [loggedInUser, setLoggedInUser] = useState(null);
     const [sender, setSender] = useState(null);
     const [messages, setMessages] = useState([]);
+    const [messagePage, setMessagePage] = useState(1);
     const data = {
         openRightSidebar,
         setOpenRightSidebar,
@@ -19,6 +20,8 @@ export const GlobalProvider = ({ children }) => {
         setSender,
         messages,
         setMessages,
+        messagePage,
+        setMessagePage,
     };
     return (
         <GlobalContext.Provider value={data}>{children}</GlobalContext.Provider>

@@ -32,6 +32,7 @@ export default function Authenticated({ children }) {
         setSender,
         messages,
         setMessages,
+        messagePage,
     } = useContext(GlobalContext);
 
     const [tabIndex, setTabIndex] = useState(-1);
@@ -63,7 +64,7 @@ export default function Authenticated({ children }) {
         const messages = fetch(
             `${
                 import.meta.env.VITE_API_URI
-            }/messages/?senderId=${activeChatPerson}`,
+            }/messages/?senderId=${activeChatPerson}&page=${messagePage}`,
             { headers: { "Content-Type": "application/json" } }
         )
             .then((res) => res.json())

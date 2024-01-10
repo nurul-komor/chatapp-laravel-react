@@ -3,7 +3,15 @@ import React, { useContext } from "react";
 import { IoAlertCircleOutline } from "react-icons/io5";
 
 export default function Navbar() {
-    const { openRightSidebar, setOpenRightSidebar } = useContext(GlobalContext);
+    const {
+        openRightSidebar,
+        setOpenRightSidebar,
+        activeChatPerson,
+        setActiveChatPerson,
+        sender,
+        loggedInUser,
+        setLoggedInUser,
+    } = useContext(GlobalContext);
     return (
         <>
             <div className=" bg-white  w-full relative z-30">
@@ -22,11 +30,12 @@ export default function Navbar() {
                         <div className="flex flex-col leading-tight">
                             <div className="text-lg mt-1 flex items-center">
                                 <span className="text-gray-700 mr-3">
-                                    Anderson Vanhron
+                                    {sender?.name}
                                 </span>
                             </div>
                             <span className="text-sm text-gray-600">
-                                Junior Developer
+                                {/* Junior Developer */}
+                                {sender?.id}
                             </span>
                         </div>
                     </div>
