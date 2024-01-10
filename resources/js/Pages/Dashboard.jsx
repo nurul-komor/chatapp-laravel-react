@@ -34,9 +34,12 @@ export default function Dashboard({ auth }) {
                             <span key={index}>
                                 {message?.recipient_id == loggedInUser?.id ? (
                                     <>
+                                        {/* When sender of (this) message and (this-1) both of them are same , thats mean this is not the last message  */}
+                                        {/* As it if flex reverse map, thats why (this -1) refers to the next latest  message  */}
+
                                         {/* <ChatMessageLeft /> */}
-                                        {elements[index - 1]?.recipient_id ==
-                                        elements[index]?.recipient_id ? (
+                                        {elements[index - 1]?.sender_id ==
+                                        elements[index]?.sender_id ? (
                                             <ChatMessageLeft
                                                 message={message}
                                             />
@@ -50,7 +53,7 @@ export default function Dashboard({ auth }) {
                                 ) : (
                                     <>
                                         {/* When sender of (this) message and (this-1) both of them are same , thats mean this is not the last message  */}
-
+                                        {/* As it if flex reverse map, thats why (this -1) refers to the next latest  message  */}
                                         {/* chat message right  */}
                                         {elements[index - 1]?.sender_id ==
                                         elements[index]?.sender_id ? (
