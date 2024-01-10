@@ -7,6 +7,7 @@
     body {
         font-family: "Quicksand", sans-serif;
         font-weight: 500;
+        color: #555;
     }
     .text-primary {
         @apply text-blue-500;
@@ -37,5 +38,49 @@
     /* Handle on hover */
     .scrollbar-none::-webkit-scrollbar-thumb:hover {
         background: #555;
+    }
+    /* -------------------------------------------------------------------------- */
+    /*                           custom scrollbar starts                          */
+    /* -------------------------------------------------------------------------- */
+    /* width */
+    /* width */
+    .custom-scrollbar::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    /* Track */
+    .custom-scrollbar::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 50%;
+    }
+
+    /* Handle */
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+        border-radius: 50px;
+        background: #dcdcdc;
+    }
+
+    /* Handle on hover */
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+        /* border-radius: 50%; */
+        background: #555;
+    }
+
+    /* -------------------------------------------------------------------------- */
+    /*                            custom scrollbar ends                           */
+    /* -------------------------------------------------------------------------- */
+    .text-limit-1 {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+    }
+    .text-limit-2 {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
     }
 }
