@@ -1,8 +1,9 @@
 import React, { useState } from "react";
+import { node } from "prop-types";
 
 export const GlobalContext = React.createContext(null);
-import { node } from "prop-types";
 export const GlobalProvider = ({ children }) => {
+    const [csrfToken, setCsrfToken] = useState(null);
     const [openRightSidebar, setOpenRightSidebar] = useState(true);
     const [activeChatPerson, setActiveChatPerson] = useState(null);
     const [loggedInUser, setLoggedInUser] = useState(null);
@@ -10,6 +11,8 @@ export const GlobalProvider = ({ children }) => {
     const [messages, setMessages] = useState([]);
     const [messagePage, setMessagePage] = useState(1);
     const data = {
+        csrfToken,
+        setCsrfToken,
         openRightSidebar,
         setOpenRightSidebar,
         activeChatPerson,

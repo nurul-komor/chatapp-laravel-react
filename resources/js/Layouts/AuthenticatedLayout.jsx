@@ -21,6 +21,7 @@ import MainStyle from "./Main.module.css";
 // contexts
 import { GlobalContext } from "@/providers/GlobalProvider";
 import ProfileBar from "@/Components/ProfileBar";
+import Echo from "laravel-echo";
 // import useAllChats from "@/hooks/useAllChats";
 export default function Authenticated({ children }) {
     const {
@@ -76,6 +77,20 @@ export default function Authenticated({ children }) {
             })
             .catch((err) => console.log(err));
     };
+    // Reload message on broadcast
+    const reloadMessage = () => {
+        fetch(
+            `${
+                import.meta.env.VITE_API_URI
+            }/messages/?senderId=${activeChatPerson}`,
+            { headers: { "Content-Type": "application/json" } }
+        )
+            .then((res) => res.json())
+            .then((data) => {
+                setMessages(data?.messages);
+            })
+            .catch((err) => console.log(err));
+    };
     /* ------------------------------ load messages ----------------------------- */
 
     const handleActiveChat = (chat) => {
@@ -87,9 +102,18 @@ export default function Authenticated({ children }) {
             setActiveChatPerson(chat?.sender_id);
         }
     };
+
     useEffect(() => {
         loadMessages();
-    }, [activeChatPerson]);
+        //load message on broadcast
+        var channel = window.Echo.channel(
+            `private-fetchMessage.${loggedInUser?.id}`
+        );
+        channel.listen("SendMessageEvent", function (data) {
+            console.log("reload message");
+            reloadMessage();
+        });
+    }, [activeChatPerson, loggedInUser]);
 
     return (
         <div className="h-screen w-full">

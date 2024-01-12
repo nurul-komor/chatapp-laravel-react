@@ -16,3 +16,9 @@ use Illuminate\Support\Facades\Broadcast;
 Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
     return (int) $user->id === (int) $id;
 });
+
+
+Broadcast::channel('fetchMessage.{recipientId}', function ($user, $recipientId) {
+    // return (int) $user->id === (int) $recipientId;
+    return true;
+});

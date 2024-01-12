@@ -1,4 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
+// eslint codes
+import { object } from "prop-types";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head } from "@inertiajs/react";
 // import ChatMessageLeft from "@/Components/ChatMessage/ChatMessageLeftContainer";
@@ -7,7 +9,6 @@ import ChatFooter from "@/Components/ChatFooter";
 import { GlobalContext } from "@/providers/GlobalProvider.jsx";
 import ChatMessageLeft from "@/Components/ChatMessage/ChatMessageLeft";
 import ChatMessageRight from "@/Components/ChatMessage/ChatMessageRight";
-
 export default function Dashboard({ auth }) {
     const {
         openRightSidebar,
@@ -76,3 +77,7 @@ export default function Dashboard({ auth }) {
         </AuthenticatedLayout>
     );
 }
+
+Dashboard.propTypes = {
+    auth: object,
+};

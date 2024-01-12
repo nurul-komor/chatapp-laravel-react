@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
-use App\Http\Requests\GetSenderRequest;
 use App\Models\Chat;
 use App\Models\User;
-use App\Services\FetchMessageSender;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use App\Services\FetchMessageSender;
+use App\Http\Requests\GetSenderRequest;
 
 class GetSendersController extends Controller
 {
