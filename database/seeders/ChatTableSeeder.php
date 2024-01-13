@@ -15,11 +15,11 @@ class ChatTableSeeder extends Seeder
     {
         for ($i = 1; $i <= 2; $i++) {
             // to get message
-            $recipient = 1;
+            $recipient = 2;
             // $sender = $recipient + rand(1, 20);
 
             // for sending message
-            $sender = 2;
+            $sender = 4;
             // $recipient = $sender + rand(1, 20);
             Chat::create([
                 'sender_id' => $sender,

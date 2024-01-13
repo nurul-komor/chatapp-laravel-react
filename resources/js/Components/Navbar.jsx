@@ -22,7 +22,7 @@ export default function Navbar() {
                     >
                         <div className="relative ring-4 ring-blue-400 ring-offset-2 rounded-full">
                             <img
-                                src="https://images.unsplash.com/photo-1549078642-b2ba4bda0cdb?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=3&amp;w=144&amp;h=144"
+                                src={`https://source.boringavatars.com/beam/20/${sender?.name}`}
                                 alt=""
                                 className="w-10  h-10 rounded-full"
                             />

@@ -28,7 +28,7 @@ export default function Dashboard({ auth }) {
             <div className="flex-1 justify-between flex flex-col  ">
                 <div
                     id="messages"
-                    className="flex flex-col flex-col-reverse gap-y-2 p-3  h-[80vh] overflow-y-scroll px-4 custom-scrollbar"
+                    className="flex flex-col flex-col-reverse gap-y-2 p-3  h-[80vh] overflow-y-scroll px-4 custom-scrollbar transition-all"
                 >
                     {messages &&
                         messages?.data?.map((message, index, elements) => (

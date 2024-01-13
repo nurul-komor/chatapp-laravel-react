@@ -7,7 +7,7 @@ const ChatPerson = ({ sender, active }) => {
                 <div className="pl-2 pr-1 py-2 flex gap-3 w-full  ring-red-400 border-l-[4px] border-blue-400  bg-blue-100">
                     <div className="h-10 w-10  bg-gray-500 rounded-full overflow-hidden">
                         <img
-                            src="https://i.pinimg.com/474x/98/51/1e/98511ee98a1930b8938e42caf0904d2d.jpg"
+                            src={`https://source.boringavatars.com/beam/20/${sender?.name}`}
                             className="w-full h-full object-cover"
                             alt=""
                         />
@@ -30,7 +30,7 @@ const ChatPerson = ({ sender, active }) => {
                 <div className="pl-2 pr-1 py-2 flex gap-3 w-full  ring-red-400 border-l-[3px] border-transparent cursor-pointer hover:bg-blue-50 duration-75">
                     <div className="h-10 w-10  bg-gray-500 rounded-full overflow-hidden">
                         <img
-                            src="https://i.pinimg.com/474x/98/51/1e/98511ee98a1930b8938e42caf0904d2d.jpg"
+                            src={`https://source.boringavatars.com/beam/20/${sender?.name}`}
                             className="w-full h-full object-cover"
                             alt=""
                         />

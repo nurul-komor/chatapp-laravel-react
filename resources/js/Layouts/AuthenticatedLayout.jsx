@@ -110,8 +110,14 @@ export default function Authenticated({ children }) {
             `private-fetchMessage.${loggedInUser?.id}`
         );
         channel.listen("SendMessageEvent", function (data) {
-            console.log("reload message");
-            reloadMessage();
+            // console.log("reload message");
+            // load new message
+            // console.log(data);
+            if (data?.sender_id == sender?.id) {
+                reloadMessage();
+            }
+            // load sender after broadcast
+            // loadSenders();
         });
     }, [activeChatPerson, loggedInUser]);
 

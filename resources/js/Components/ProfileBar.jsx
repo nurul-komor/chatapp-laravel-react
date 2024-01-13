@@ -1,5 +1,5 @@
 import { Link } from "@inertiajs/react";
-import React from "react";
+import React, { useContext } from "react";
 import {
     IoCall,
     IoLockClosed,
@@ -9,17 +9,19 @@ import {
 } from "react-icons/io5";
 import { MdGroups } from "react-icons/md";
 import ImageGallery from "./ImageGallery";
+import { GlobalContext } from "@/providers/GlobalProvider";
 function ProfileBar() {
+    const { sender } = useContext(GlobalContext);
     return (
         <div className="flex flex-col p-2 items-center ">
             <div className="">
                 <img
-                    src="https://images.unsplash.com/photo-1549078642-b2ba4bda0cdb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=144&h=144"
+                    src={`https://source.boringavatars.com/beam/120/${sender?.name}`}
                     alt=""
                     className="w-30 h-30 rounded-full mt-10 ring-[8px]  ring-blue-400"
                 />
             </div>
-            <h4 className="font-semibold text-2xl mt-3">Anderson Vanhron</h4>
+            <h4 className="font-semibold text-2xl mt-3">{sender?.name}</h4>
             <h5 className="text-lg my-2">Chittagong</h5>
             <p className="text-center text-gray-500">
                 Lorem ipsum dolor sit amet, consectetur .

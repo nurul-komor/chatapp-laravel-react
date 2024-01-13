@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { IoEllipsisVerticalSharp } from "react-icons/io5";
 import ChatDropdown from "../ChatDropdown";
+import { GlobalContext } from "@/providers/GlobalProvider";
 
 const ChatMessageLeftLast = ({ isLast, message }) => {
+    const { sender } = useContext(GlobalContext);
+    // console.log(sender);
     return (
         <div className="chat-message">
             <div className="flex items-end">
@@ -20,7 +23,7 @@ const ChatMessageLeftLast = ({ isLast, message }) => {
                 </div>
                 {isLast ? (
                     <img
-                        src="https://images.unsplash.com/photo-1549078642-b2ba4bda0cdb?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=3&amp;w=144&amp;h=144"
+                        src={`https://source.boringavatars.com/beam/120/${sender?.name}`}
                         alt="My profile"
                         className="w-8 h-8 rounded-full order-1"
                     />
